@@ -294,7 +294,7 @@ http://<IP>:3000
 - Click **Run query**.
 
 #### 📝 NOTE
-You will see only new log lines because in config.alloy:
+You will see only new log lines because in `config.alloy`:
 
   ```
   // Start reading from the end of each file to capture only new log entries, ideal for real-time monitoring
