@@ -48,17 +48,17 @@ Additionally, [Prometheus](https://github.com/prometheus/prometheus) is included
 
 #### In case you want to test this setup on your local Windows, install WSL (Windows Subsystem for Linux) by opening PowerShell in Windows Terminal:
 
-#### Check if WSL is installed:
+#### 1.1 Check if WSL is installed:
 ```powershell
 wsl -v
 ```
 
-#### Install WSL if not already installed:
+#### 1.2 Install WSL if not already installed:
 ```powershell
 wsl --install
 ```
 
-#### List available distributions:
+#### 1.3 List available distributions:
 ```powershell
 wsl --list --online
 ```
@@ -67,22 +67,22 @@ or for short:
 wsl -l -o
 ```
 
-#### List installed distributions:
+#### 1.4 List installed distributions:
 ```powershell
 wsl -l
 ```
 
-#### Install Ubuntu or another distribution:
+#### 1.5 Install Ubuntu or another distribution:
 ```powershell
 wsl --install -d Ubuntu-24.04
 ```
 
-#### After installation, update the system:
+#### 1.6 After installation, update the system:
 ```sh
 sudo apt update && sudo apt upgrade
 ```
 
-#### Install Git:
+#### 1.7 Install Git:
 ```sh
 sudo apt install git
 ```
@@ -97,7 +97,7 @@ sudo apt install git
 
 #### You need Docker to deploy this stack. If you don't have Docker already, install it by following the instructions below:
 
-#### Add Docker’s official GPG key:
+#### 2.1 Add Docker’s official GPG key:
 ```sh
 sudo apt-get install ca-certificates curl
 sudo install -m 0755 -d /etc/apt/keyrings
@@ -105,7 +105,7 @@ sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyring
 sudo chmod a+r /etc/apt/keyrings/docker.asc
 ```
 
-#### Add Docker repository to apt sources:
+#### 2.2 Add Docker repository to apt sources:
 ```sh
 echo \  
   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \  
@@ -114,32 +114,32 @@ echo \
 sudo apt-get update
 ```
 
-#### Install Docker:
+#### 2.3 Install Docker:
 ```sh
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
 
-#### Verify installation:
+#### 2.4 Verify installation:
 ```sh
 sudo docker run hello-world
 ```
 
-#### Check running containers:
+#### 2.5 Check running containers:
 ```sh
 sudo docker ps
 ```
 
-#### Check Docker status:
+#### 2.6 Check Docker status:
 ```sh
 sudo systemctl status docker
 ```
 
-#### Add user to Docker group (to run without sudo):
+#### 2.7 Add user to Docker group (to run without sudo):
 ```sh
 sudo usermod -aG docker $USER
 ```
 
-#### Apply group changes without logging out:
+#### 2.8 Apply group changes without logging out:
 ```sh
 newgrp docker
 ```
@@ -154,24 +154,24 @@ newgrp docker
 
 #### Portainer is a web-based UI for managing Docker containers.
 
-#### Create a volume for Portainer:
+#### 3.1 Create a volume for Portainer:
 ```sh
 docker volume create portainer_data
 ```
 
-#### Install Portainer:
+#### 3.2 Install Portainer:
 ```sh
 docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always \
   -v /var/run/docker.sock:/var/run/docker.sock \
   -v portainer_data:/data portainer/portainer-ce:lts
 ```
 
-#### Check running containers:
+#### 3.3 Check running containers:
 ```sh
 docker ps
 ```
 
-#### Check IP address:
+#### 3.4 Check IP address:
 ```sh
 ifconfig
 ```
@@ -181,7 +181,7 @@ If `ifconfig` is not available, install `net-tools`:
 sudo apt install net-tools
 ```
 
-#### Access Portainer:
+#### 3.5 Access Portainer:
 Open a web browser and navigate to:
 ```
 https://<IP>:9443
@@ -194,13 +194,13 @@ https://<IP>:9443
 <details>
   <summary><strong>4. Install and configure Grafana Alloy on machine with logs</strong></summary>
 
-#### [Download and install Grafana Alloy.](https://grafana.com/docs/alloy/latest/set-up/install/windows/)
-#### Edit `config.alloy` in the Alloy configuration directory:
+#### 4.1 [Download and install Grafana Alloy.](https://grafana.com/docs/alloy/latest/set-up/install/windows/)
+#### 4.2 Edit `config.alloy` in the Alloy configuration directory:
 ```powershell
 ii "C:\Program Files\GrafanaLabs\Alloy\"
 ```
 
-#### NOTE
+#### 📝 NOTE
 Change path to logs folder as needed:
 
   ```
@@ -223,7 +223,7 @@ Change Loki IP:
     url = "http://<IP>:3100/loki/api/v1/push"
   ```
 
-#### Restart the Alloy service:
+#### 4.3 Restart the Alloy service:
 ```powershell
 Restart-Service -Name Alloy
 ```
@@ -231,7 +231,7 @@ or manually from:
 ```powershell
 services.msc
 ```
-#### Check the event log for errors:
+#### 4.4 Check the event log for errors:
 ```powershell
 Get-WinEvent -FilterHashtable @{LogName="Application"; ProviderName="Alloy"; Level=@(2,3)} | Sort-Object TimeCreated
 ```
@@ -244,13 +244,15 @@ eventvwr.msc
 <details>
   <summary><strong>5. Deploy Grafana Monitoring Stack</strong></summary>
 
-#### Clone this repository:
+#### 5.1 Clone this repository:
 ```sh
 git clone https://github.com/SeshTiliRest/grafana-stack.git
 cd grafana-stack
 ```
+#### ⚠️ WARNING
+Check carefully `loki\config.yaml`, `prometheus\prometheus.yml` and `compose.yml` before deploy!
 
-#### Start the monitoring stack:
+#### 5.2 Start the monitoring stack:
 ```sh
 docker compose up -d
 ```
@@ -259,48 +261,49 @@ docker compose up -d
 <details>
   <summary><strong>6. Configure Grafana</strong></summary>
 
-#### Access Grafana:
+#### 6.1 Access Grafana:
 Open a web browser and navigate to:
 
 ```
 http://<IP>:3000
 ```
 
-#### Add Loki and Prometheus as data sources:
-1. Log in to Grafana (default credentials: `admin` / `admin`).
-2. Change password.
-3. Go to **Connections → Data Sources**.
-4. Click **Add data source**.
-5. Select **Loki** and set the URL to:
+#### 6.2 Add Loki and Prometheus as data sources:
+- Log in to Grafana (default credentials: `admin` / `admin`).
+- Change password.
+- Go to **Connections → Data Sources**.
+- Click **Add data source**.
+- Select **Loki** and set the URL to:
 
    ```
    http://loki:3100
    ```
 
-6. Click **Save & Test**.
-7. Repeat the steps for **Prometheus**, setting the URL to:
+- Click **Save & Test**.
+- Repeat the steps for **Prometheus**, setting the URL to:
 
    ```
    http://prometheus:9090
    ```
 
-#### Explore data:
-1. Navigate to **Explore**.
-2. Select **loki**.
-3. Switch A query from Builder to Code.
-4. Paste: {host="windows_vm", job="app1_logs"} |= ``
-5. Click **Run query**.
+#### 6.3 Explore data:
+- Navigate to **Explore**.
+- Select **loki**.
+- Switch A query from Builder to Code.
+- Paste: {host="windows_vm", job="app1_logs"} |= ``
+- Click **Run query**.
 
-#### NOTE You will see only new log lines because in config.alloy:
+#### 📝 NOTE
+You will see only new log lines because in config.alloy:
 
   ```
   // Start reading from the end of each file to capture only new log entries, ideal for real-time monitoring
   tail_from_end = true
   ```
 
-#### Import the Grafana dashboard:
-1. Navigate to **Dashboards → New → Import**.
-2. Upload `dashboard.json` from the `grafana/` directory.
-3. Load, select a Loki data source and click **Import**.
+#### 6.4 Import the Grafana dashboard:
+- Navigate to **Dashboards → New → Import**.
+- Upload `dashboard.json` from the `grafana/` directory.
+- Load, select a Loki data source and click **Import**.
 
 </details>
