@@ -1,0 +1,86 @@
+services:
+  # Grafana service configuration
+  grafana:
+    # Use the latest official Grafana image from Docker Hub
+    image: grafana/grafana:latest
+    # Set a custom name for the container to easily identify it in logs or commands
+    container_name: grafana
+    # Restart the container automatically unless it is manually stopped
+    restart: unless-stopped
+    # Map host port 3000 to container port 3000 to access Grafana's web UI
+    ports:
+      - "3000:3000"
+    # Persist Grafana data (dashboards, users, etc.) in a named volume
+    volumes:
+      - grafana-storage:/var/lib/grafana
+    # Healthcheck to ensure Grafana is running properly
+    healthcheck:
+      # Use wget to check if the login page is accessible
+      test: ["CMD", "wget", "-qO", "-", "http://localhost:3000/login"]
+      interval: 30s  # Check every 30 seconds
+      timeout: 10s   # Allow 10 seconds for the command to complete
+      retries: 5     # Retry up to 5 times before considering unhealthy
+
+  # Loki service configuration
+  loki:
+    # Use the latest official Loki image from Docker Hub
+    image: grafana/loki:latest
+    # Set a custom name for the container to easily identify it
+    container_name: loki
+    # Restart the container automatically unless it is manually stopped
+    restart: unless-stopped
+    # Map host port 3100 to container port 3100 to access Loki's API
+    ports:
+      - "3100:3100"
+    # Mount the configuration file and data directory
+    volumes:
+      # Mount the Loki config file from the host as read-only
+      - ./loki/config.yaml:/etc/loki/config.yaml:ro
+      # Persist Loki's storage data (logs and indexes) in a named volume
+      - data_loki:/loki:rw
+    # Specify the configuration file to use when starting Loki
+    command: "-config.file=/etc/loki/config.yaml"
+    # Healthcheck to ensure Loki is ready to accept logs
+    healthcheck:
+      # Use wget to check the /ready endpoint
+      test: ["CMD", "wget", "-qO", "-", "http://localhost:3100/ready"]
+      interval: 30s  # Check every 30 seconds
+      timeout: 10s   # Allow 10 seconds for the command to complete
+      retries: 5     # Retry up to 5 times before considering unhealthy
+
+  # Prometheus service configuration
+  prometheus:
+    # Use the latest official Prometheus image from Docker Hub
+    image: prom/prometheus:latest
+    # Set a custom name for the container to easily identify it
+    container_name: prometheus
+    # Restart the container automatically unless it is manually stopped
+    restart: unless-stopped
+    # Map host port 9090 to container port 9090 to access Prometheus's web UI
+    ports:
+      - "9090:9090"
+    # Mount the configuration directory and data directory
+    volumes:
+      # Mount the entire Prometheus config directory from the host
+      - ./prometheus:/etc/prometheus
+      # Persist Prometheus's time-series data in a named volume
+      - prom_data:/prometheus
+    # Specify the configuration file to use when starting Prometheus
+    command: "--config.file=/etc/prometheus/prometheus.yml"
+    # Healthcheck to ensure Prometheus is running properly
+    healthcheck:
+      # Use wget to check the /-/healthy endpoint
+      test: ["CMD", "wget", "-qO", "-", "http://localhost:9090/-/healthy"]
+      interval: 30s  # Check every 30 seconds
+      timeout: 10s   # Allow 10 seconds for the command to complete
+      retries: 5     # Retry up to 5 times before considering unhealthy
+
+# Define named volumes for data persistence across container restarts
+volumes:
+  # Volume for storing Grafana's data (dashboards, users, etc.)
+  grafana-storage: {}
+  # Volume for Loki's storage (logs and indexes), using the local driver
+  data_loki:
+    driver: local
+  # Volume for Prometheus's time-series data
+  prom_data: {}

@@ -1,0 +1,100 @@
+// Configuration for monitoring App1 logs
+local.file_match "app1_logs" {
+  // Define the path to App1 log files using glob patterns to match all .log files in the specified directory
+  path_targets = [{"__path__" = "C:/App1/Folder/logs/Default/*.log"}]
+  // Set the interval for discovering new log files; checks every hour to ensure new logs are picked up
+  sync_period = "1h"
+}
+
+// Define a log source for collecting App1 logs
+loki.source.file "log_scrape" {
+  // Reference the log file paths defined in the app1_logs file match
+  targets = local.file_match.app1_logs.targets
+  // Send collected logs to the processing pipeline for structured label extraction
+  forward_to = [loki.process.add_labels.receiver]
+  // Start reading from the end of each file to capture only new log entries, ideal for real-time monitoring
+  tail_from_end = true
+}
+
+// Process App1 logs to extract structured data and add labels
+loki.process "add_labels" {
+  stage.regex {
+    // Parse log lines into timestamp, log level, component, and message using a regular expression
+    // Example log format: "2023-10-01 12:00:00.000 INFO ComponentName This is a message"
+    expression = `^(?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3})\s+(?P<level>INFO|WARN|ERROR|FATAL)\s+(?P<component>\S+)\s+(?P<message>.*)`
+  }
+  stage.labels {
+    values = {
+      // Map extracted log level to a label for querying in Loki
+      "level" = "level",
+      // Map extracted component name to a label for filtering by component
+      "component" = "component",
+    }
+  }
+  // Forward processed logs to the relabeling stage for additional metadata
+  forward_to = [loki.relabel.enforce_labels.receiver]
+}
+
+// Apply relabeling rules to enforce consistent metadata for App1 logs
+loki.relabel "enforce_labels" {
+  // Send relabeled logs to the Loki write endpoint
+  forward_to = [loki.write.loki.receiver]
+  rule {
+    // Set a static job label to identify these logs as coming from App1 in Loki
+    target_label = "job"
+    replacement = "app1_logs"
+  }
+  rule {
+    // Set a static host label to indicate the logs originate from a Windows VM
+    target_label = "host"
+    replacement = "windows_vm"
+  }
+}
+
+// Configuration for monitoring App2 logs
+local.file_match "app2_logs" {
+  // Define the path to App2's single log file; no glob pattern needed as it's a specific file
+  path_targets = [{"__path__" = "C:/App2/message.log"}]
+  // Check for the log file every hour; ensures the file is monitored even if it’s a single file
+  sync_period = "1h"
+}
+
+// Define a log source for collecting App2 logs
+loki.source.file "log_scrape_app2" {
+  // Reference the log file path defined in the app2_logs file match
+  targets = local.file_match.app2_logs.targets
+  // Forward logs directly to relabeling; no processing needed as logs are assumed to be pre-structured
+  forward_to = [loki.relabel.enforce_labels_app2.receiver]
+  // Start reading from the end of the file to focus on new entries only
+  tail_from_end = true
+}
+
+// Apply relabeling rules to enforce consistent metadata for App2 logs
+loki.relabel "enforce_labels_app2" {
+  // Send relabeled logs to the Loki write endpoint
+  forward_to = [loki.write.loki.receiver]
+  rule {
+    // Set a static job label to identify these logs as coming from App2 in Loki
+    target_label = "job"
+    replacement = "app2_logs"
+  }
+  rule {
+    // Set a static host label to indicate the logs originate from a Windows VM
+    target_label = "host"
+    replacement = "windows_vm"
+  }
+}
+
+// Configure the output destination for sending logs to Loki
+loki.write "loki" {
+  endpoint {
+    // Specify the Loki server URL; ensure this endpoint is reachable from Alloy’s network
+    url = "http://<IP>:3100/loki/api/v1/push"
+  }
+}
+
+// Configure Alloy's logging level
+logging {
+  // Set to debug for detailed troubleshooting; consider switching to "info" in production to reduce log volume
+  level = "debug"
+}

@@ -1,0 +1,44 @@
+# Disable authentication for Loki. In production, consider enabling authentication for security.
+auth_enabled: false
+
+# Server configuration
+server:
+  # Set the HTTP port on which Loki listens for requests. Default is 3100.
+  http_listen_port: 3100
+
+# Common configuration settings for Loki
+common:
+  # Address of this Loki instance. Set to localhost.
+  instance_addr: 127.0.0.1
+  # Path prefix for all Loki URLs. Useful for routing in proxies.
+  path_prefix: /loki
+  # Storage configuration for chunks and rules
+  storage:
+    filesystem:
+      # Directory to store log chunks
+      chunks_directory: /loki/chunks
+      # Directory to store alerting and recording rules
+      rules_directory: /loki/rules
+  # Replication factor for data. Set to 1 for no replication (single node).
+  replication_factor: 1
+  # Ring configuration for distributed storage
+  ring:
+    kvstore:
+      # Use in-memory storage for the ring. Suitable for single-node setups.
+      store: inmemory
+
+# Schema configuration for log storage
+schema_config:
+  configs:
+    - from: 2020-10-24  # Start date for this schema configuration
+      store: tsdb       # Use TSDB for storing logs
+      object_store: filesystem  # Store objects (chunks) on the filesystem
+      schema: v13       # Schema version to use
+      index:
+        prefix: index_  # Prefix for index files
+        period: 24h     # Index period (24 hours)
+
+# Ruler configuration for alerting
+# Note: Alertmanager is not included in this stack. Remove or comment out if not needed.
+ruler:
+  alertmanager_url: http://localhost:9093  # URL of Alertmanager instance
