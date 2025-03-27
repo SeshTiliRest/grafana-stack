@@ -34,6 +34,13 @@ Additionally, [Prometheus](https://github.com/prometheus/prometheus) is included
 
 </details>
 
+<details>
+  <summary>Grafana Dashboard example</summary>
+  
+![FATAL](https://github.com/user-attachments/assets/7b27a444-c400-4d87-941b-8a5e9d855637)
+
+</details>
+
 ## Setup Instructions
 
 <details>
@@ -284,7 +291,7 @@ http://<IP>:3000
 4. Paste: {host="windows_vm", job="app1_logs"} |= ``
 5. Click **Run query**.
 
-NOTE: You will see only new log lines because in config.alloy:
+#### NOTE You will see only new log lines because in config.alloy:
 
   ```
   // Start reading from the end of each file to capture only new log entries, ideal for real-time monitoring
