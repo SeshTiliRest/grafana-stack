@@ -208,6 +208,11 @@ Change path to logs folder as needed:
   path_targets = [{"__path__" = "C:/App1/Folder/logs/Default/*.log"}]
   ```
 
+  ```
+  // Define the path to App2's single log file; no glob pattern needed as it's a specific file
+  path_targets = [{"__path__" = "C:/App2/message.log"}]
+  ```
+
 Modify the regular expression as needed:
 
   ```
