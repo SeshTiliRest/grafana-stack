@@ -43,6 +43,8 @@ Additionally, [Prometheus](https://github.com/prometheus/prometheus) is included
 
 </details>
 
+#### [Перевод](https://github.com/SeshTiliRest/grafana-stack/blob/main/RU.md)
+
 ## Setup Instructions
 
 <details>
