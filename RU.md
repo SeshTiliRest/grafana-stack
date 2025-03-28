@@ -1,6 +1,6 @@
-# Grafana стек для мониторинга логов
+<h1 align="center">Grafana стек для мониторинга логов</h1>
 
-### Логи → Alloy → Loki → Grafana
+<h3 align="center">Логи → Alloy → Loki → Grafana</h3>
 
 ## Обзор
 
