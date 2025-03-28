@@ -1,3 +1,5 @@
+//Documentation: https://grafana.com/docs/alloy/latest/
+
 // Configuration for monitoring App1 logs
 local.file_match "app1_logs" {
   // Define the path to App1 log files using glob patterns to match all .log files in the specified directory
