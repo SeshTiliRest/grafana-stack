@@ -1,4 +1,4 @@
-//Documentation: https://grafana.com/docs/alloy/latest/
+// Documentation: https://grafana.com/docs/alloy/latest/
 
 // Configuration for monitoring App1 logs
 local.file_match "app1_logs" {
