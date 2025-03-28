@@ -303,7 +303,7 @@ http://<IP>:3000
 - Navigate to **Explore**.
 - Select **loki**.
 - Switch A query from Builder to Code.
-- Paste: {host="windows_vm", job="app1_logs"} |= ``
+- Paste: ` {host="windows_vm", job="app1_logs"} |= `` `
 - Click **Run query**.
 
 #### 📝 NOTE
