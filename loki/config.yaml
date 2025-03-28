@@ -1,3 +1,5 @@
+# Documentation: https://grafana.com/docs/loki/latest/
+
 # Disable authentication for Loki. In production, consider enabling authentication for security.
 auth_enabled: false
 
