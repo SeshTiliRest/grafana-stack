@@ -1,6 +1,6 @@
-# Grafana Logs Monitoring Stack
+<h1 align="center">Grafana Logs Monitoring Stack</h1>
 
-### Logs → Alloy → Loki → Grafana
+<h3 align="center">Logs → Alloy → Loki → Grafana</h3>
 
 ## Overview
 
