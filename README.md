@@ -1,7 +1,7 @@
 <h1 align="center">Grafana Logs Monitoring Stack</h1>
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/c5228baf-f8dc-4830-9745-88fc0c595d15" width="500">
+  <img src="https://github.com/user-attachments/assets/6a035047-623f-4920-8118-3be9238c2b30" width="500">
 </p>
 
 <h3 align="center">Logs → Alloy → Loki → Grafana</h3>
