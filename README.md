@@ -38,8 +38,8 @@ Additionally, [Prometheus](https://github.com/prometheus/prometheus) is included
 
 <details>
   <summary>Grafana Dashboard example</summary>
-  
-![FATAL](https://github.com/user-attachments/assets/7b27a444-c400-4d87-941b-8a5e9d855637)
+
+![grafana-dashboard](https://github.com/user-attachments/assets/db163817-878e-4ac1-bb6d-6cc182905233)
 
 </details>
 
