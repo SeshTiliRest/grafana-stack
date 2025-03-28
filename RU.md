@@ -8,9 +8,9 @@ TL;DR Есть виртуальная машина с Windows, на которо
 - App1 генерирует ежедневные файлы логов (например, `2025-01-01.log`).
 - App2 пишет логи в один файл (`message.log`).
 
-Стек состоит из [Grafana](https://github.com/grafana/grafana), [Loki](https://github.com/grafana/loki) и [Grafana Alloy](https://github.com/grafana/alloy) для мониторинга этих лог-файлов.
+Стек состоит из [Grafana](https://github.com/grafana/grafana/), [Loki](https://github.com/grafana/loki/) и [Grafana Alloy](https://github.com/grafana/alloy/) для мониторинга этих лог-файлов.
 
-Дополнительно добавлен [Prometheus](https://github.com/prometheus/prometheus) с конфигурацией на случай, если вы захотите использовать [windows_exporter](https://github.com/prometheus-community/windows_exporter) или [другой экспортер](https://prometheus.io/docs/instrumenting/exporters/) для мониторинга в Grafana.
+Дополнительно добавлен [Prometheus](https://github.com/prometheus/prometheus/) с конфигурацией на случай, если вы захотите использовать [windows_exporter](https://github.com/prometheus-community/windows_exporter/) или [другой экспортер](https://prometheus.io/docs/instrumenting/exporters/) для мониторинга в Grafana.
 
 <details>
   <summary>App1 пример лога (2025-01-01.log)</summary>
@@ -90,7 +90,7 @@ sudo apt install git
 ```
 
 **Официальная документация:**  
-[Руководство по установке WSL](https://learn.microsoft.com/ru-ru/windows/wsl/install)
+[Руководство по установке WSL](https://learn.microsoft.com/ru-ru/windows/wsl/install/)
 
 </details>
 
@@ -190,7 +190,7 @@ https://<IP>:9443
 ```
 
 **Официальная документация:**  
-[Руководство по установке Portainer](https://docs.portainer.io/start/install-ce/server/docker/linux)
+[Руководство по установке Portainer](https://docs.portainer.io/start/install-ce/server/docker/linux/)
 </details>
 
 <details>
