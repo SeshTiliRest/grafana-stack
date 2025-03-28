@@ -1,3 +1,5 @@
+# Documentation: https://prometheus.io/docs/introduction/overview/
+
 # Global configuration settings applied to all jobs unless overridden
 global:
   scrape_interval: 15s      # Default interval for scraping metrics from targets (15 seconds)
