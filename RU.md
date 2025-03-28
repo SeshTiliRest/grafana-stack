@@ -38,8 +38,8 @@ TL;DR Есть виртуальная машина с Windows, на которо
 
 <details>
   <summary>Пример дэшборда в Grafana</summary>
-  
-![FATAL](https://github.com/user-attachments/assets/7b27a444-c400-4d87-941b-8a5e9d855637)
+
+![grafana-dashboard](https://github.com/user-attachments/assets/595742f5-5a53-4fef-876e-4f8b389a8596)
 
 </details>
 
