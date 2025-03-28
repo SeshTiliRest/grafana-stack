@@ -1,5 +1,9 @@
 <h1 align="center">Grafana стек для мониторинга логов</h1>
 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/c5228baf-f8dc-4830-9745-88fc0c595d15" width="500">
+</p>
+
 <h3 align="center">Логи → Alloy → Loki → Grafana</h3>
 
 ## Обзор
