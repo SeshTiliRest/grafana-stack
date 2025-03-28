@@ -1,3 +1,5 @@
+# Documentation: https://docs.docker.com/compose/
+
 services:
   # Grafana service configuration
   grafana:
