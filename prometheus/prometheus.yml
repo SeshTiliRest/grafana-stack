@@ -29,18 +29,21 @@ scrape_configs:
         - localhost:9090      # Target to scrape (Prometheus's own metrics endpoint)
 
 # For this job install https://github.com/prometheus/node_exporter/
+# Grafana Dashboard https://grafana.com/grafana/dashboards/1860-node-exporter-full/
 # Example job for scraping metrics from a node_exporter instance (commented out)
 #  - job_name: docker        # Custom job name (e.g., 'docker' for a Docker host)
 #    static_configs:
 #      - targets: ['10.1.1.1:9100']  # IP and port of the node_exporter instance (change to your server's IP)
 
 # For this job install https://github.com/prometheus-community/windows_exporter/
+# Grafana Dashboard https://grafana.com/grafana/dashboards/16523-windows-status-prometheus/
 # Example job for scraping metrics from a single windows_exporter instance (commented out)
 #  - job_name: hyperv        # Custom job name (e.g., 'hyperv' for a Hyper-V host)
 #    static_configs:
 #      - targets: ['10.1.1.2:9182']  # IP and port of the windows_exporter instance (change to your server's IP)
 
 # For this job install https://github.com/prometheus-community/windows_exporter/
+# Grafana Dashboard https://grafana.com/grafana/dashboards/16523-windows-status-prometheus/
 # Example job for scraping metrics from multiple windows_exporter instances (commented out)
 #  - job_name: hyperv        # Custom job name (e.g., 'hyperv' for multiple Hyper-V hosts)
 #    static_configs:
