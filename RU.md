@@ -44,7 +44,7 @@ TL;DR Есть виртуальная машина с Windows, на которо
 <details>
   <summary>Пример дэшборда в Grafana</summary>
 
-![grafana-dashboard](https://github.com/user-attachments/assets/595742f5-5a53-4fef-876e-4f8b389a8596)
+![grafana-dashboard](https://github.com/user-attachments/assets/d875a89c-ac50-4331-ab29-bbe9d83b8ca0)
 
 </details>
 
