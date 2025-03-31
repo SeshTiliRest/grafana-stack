@@ -44,7 +44,7 @@ in case you want to use [windows_exporter](https://github.com/prometheus-communi
 <details>
   <summary>Grafana Dashboard example</summary>
 
-![grafana-dashboard](https://github.com/user-attachments/assets/db163817-878e-4ac1-bb6d-6cc182905233)
+![grafana-dashboard](https://github.com/user-attachments/assets/d875a89c-ac50-4331-ab29-bbe9d83b8ca0)
 
 </details>
 
