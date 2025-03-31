@@ -236,7 +236,7 @@ ii "C:\Program Files\GrafanaLabs\Alloy\"
     url = "http://<IP>:3100/loki/api/v1/push"
   ```
 
-Вы так же можете отредактировать лейблы `app1_logs`, `app2_logs`, `windows_vm`.
+Вы также можете переименовать лейблы `app1_logs`, `app2_logs`, `windows_vm`.
 
 #### 4.3 Перезапустите службу Alloy:
 ```powershell
