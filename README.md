@@ -237,6 +237,8 @@ Change Loki IP:
     url = "http://<IP>:3100/loki/api/v1/push"
   ```
 
+You can also rename the labels `app1_logs`, `app2_logs`, `windows_vm`.
+
 #### 4.3 Restart the Alloy service:
 ```powershell
 Restart-Service -Name Alloy
