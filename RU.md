@@ -15,7 +15,7 @@ TL;DR Есть виртуальная машина с Windows, на которо
 Стек состоит из [Grafana](https://github.com/grafana/grafana/), [Loki](https://github.com/grafana/loki/) и [Grafana Alloy](https://github.com/grafana/alloy/) для мониторинга этих лог-файлов.
 
 Дополнительно добавлен [Prometheus](https://github.com/prometheus/prometheus/) с конфигурацией на случай,  
-если вы захотите использовать [windows_exporter](https://github.com/prometheus-community/windows_exporter/), [node exporter](https://github.com/prometheus/node_exporter/) или [другой экспортер](https://prometheus.io/docs/instrumenting/exporters/) для мониторинга в Grafana.
+если вы захотите использовать [windows_exporter](https://github.com/prometheus-community/windows_exporter/), [node exporter](https://github.com/prometheus/node_exporter/) или [другой экспортер](https://prometheus.io/docs/instrumenting/exporters/) для мониторинга метрик в Grafana.
 
 <details>
   <summary>App1 пример лога (2025-01-01.log)</summary>
@@ -235,6 +235,8 @@ ii "C:\Program Files\GrafanaLabs\Alloy\"
     // Specify the Loki server URL; ensure this endpoint is reachable from Alloy’s network
     url = "http://<IP>:3100/loki/api/v1/push"
   ```
+
+Вы так же можете отредактировать лейблы `app1_logs`, `app2_logs`, `windows_vm`.
 
 #### 4.3 Перезапустите службу Alloy:
 ```powershell
