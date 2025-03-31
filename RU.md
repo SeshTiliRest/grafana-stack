@@ -209,7 +209,7 @@ ii "C:\Program Files\GrafanaLabs\Alloy\"
 ```
 
 #### 📝 ПРИМЕЧАНИЕ
-Отредактируйте путь к папкам с логами приложений:
+Отредактируйте путь к каталогам с логами приложений:
 
   ```
   // Define the path to App1 log files using glob patterns to match all .log files in the specified directory
