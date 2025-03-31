@@ -9,8 +9,8 @@
 ## Обзор
 
 TL;DR Есть виртуальная машина с Windows, на которой установлено два приложения:
-- App1 генерирует ежедневные файлы логов (`2025-01-01.log`).
-- App2 пишет логи в один файл (`message.log`).
+- App1, которое генерирует ежедневные файлы логов (`C:\App1\Folder\logs\Default\*.log`).
+- App2, которое пишет логи в один файл (`C:\App2\message.log`).
 
 Стек состоит из [Grafana](https://github.com/grafana/grafana/), [Loki](https://github.com/grafana/loki/) и [Grafana Alloy](https://github.com/grafana/alloy/) для мониторинга этих лог-файлов.
 
