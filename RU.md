@@ -246,7 +246,7 @@ Restart-Service -Name Alloy
 ```powershell
 services.msc
 ```
-#### 4.5 Проверьте журнал событий на наличие ошибок:
+#### 4.4 Проверьте журнал событий на наличие ошибок:
 ```powershell
 Get-WinEvent -FilterHashtable @{LogName="Application"; ProviderName="Alloy"; Level=@(2,3)} | Sort-Object TimeCreated
 ```
