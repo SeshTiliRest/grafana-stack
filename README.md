@@ -204,7 +204,7 @@ https://<IP>:9443
   <summary><strong>4. Install and configure Grafana Alloy on machine with logs</strong></summary>
 
 #### 4.1 [Download and install Grafana Alloy.](https://grafana.com/docs/alloy/latest/set-up/install/windows/)
-#### 4.2 Edit `config.alloy` in the Alloy configuration directory:
+#### 4.2 Copy `alloy\config.alloy` and edit config in the Alloy configuration directory:
 ```powershell
 ii "C:\Program Files\GrafanaLabs\Alloy\"
 ```
