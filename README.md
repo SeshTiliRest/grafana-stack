@@ -9,8 +9,8 @@
 ## Overview
 
 TL;DR I have a Windows virtual machine with two applications:
-- App1, which generates daily log files (`2025-01-01.log`).
-- App2, which writes logs to a single file (`message.log`).
+- App1, which generates daily log files (`C:\App1\Folder\logs\Default\*.log`).
+- App2, which writes logs to a single file (`C:\App2\message.log`).
 
 The stack consists of [Grafana](https://github.com/grafana/grafana/), [Loki](https://github.com/grafana/loki/), and [Grafana Alloy](https://github.com/grafana/alloy/) to monitor these log files.
 
