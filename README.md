@@ -15,7 +15,7 @@ TL;DR I have a Windows virtual machine with two applications:
 The stack consists of [Grafana](https://github.com/grafana/grafana/), [Loki](https://github.com/grafana/loki/), and [Grafana Alloy](https://github.com/grafana/alloy/) to monitor these log files.
 
 Additionally, [Prometheus](https://github.com/prometheus/prometheus/) is included with a configuration  
-in case you want to use [windows_exporter](https://github.com/prometheus-community/windows_exporter/), [node exporter](https://github.com/prometheus/node_exporter/) or [another exporter](https://prometheus.io/docs/instrumenting/exporters/) for monitoring in Grafana.
+in case you want to use [windows_exporter](https://github.com/prometheus-community/windows_exporter/), [node exporter](https://github.com/prometheus/node_exporter/) or [another exporter](https://prometheus.io/docs/instrumenting/exporters/) for metrics monitoring in Grafana.
 
 <details>
   <summary>App1 log example (2025-01-01.log)</summary>
